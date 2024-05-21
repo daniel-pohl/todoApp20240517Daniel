@@ -12,5 +12,5 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Todo {
     private String id;
     private String description;
-    private String status;
+    private TodoStatus status;
 }

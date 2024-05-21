@@ -5,6 +5,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class TodoController {
+
     private final TodoService todoService;
 
     public TodoController(TodoService todoService) {
@@ -15,8 +16,9 @@ public class TodoController {
     public List<Todo> getTodos() {
         return todoService.allTodos();
     }
+
     @GetMapping("/todo/{id}")
-    public Todo getTodoById(@PathVariable String id) {
+    public Todo getTodoById(@PathVariable String id) throws TodoNotFoundException {
         return todoService.findTodoById(id);
     }
 

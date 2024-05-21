@@ -6,6 +6,7 @@ import java.util.List;
 
 @Service
 public class TodoService {
+
     private final TodoRepo todoRepository;
 
     private final UuidService uuidService;
@@ -25,8 +26,10 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
-    public Todo findTodoById(String id) {
-        return todoRepository.findById(id).orElse(null);
+    public Todo findTodoById(String id) throws TodoNotFoundException {
+        return todoRepository.findById(id)
+                .orElseThrow(() ->
+                        new TodoNotFoundException("Todo with id " + id + " not found"));
     }
 
     public Todo updateTodo(String id, Todo todo) {
